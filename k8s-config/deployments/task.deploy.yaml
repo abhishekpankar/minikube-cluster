@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: task-app
+  name: task-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: task-app
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: task-app
+    spec:
+      containers:
+      - image: task-service:1
+        imagePullPolicy: Never
+        name: task-service
+        ports:
+          - containerPort: 3001
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+status: {}

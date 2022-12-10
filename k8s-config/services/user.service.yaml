@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: user-app
+  name: user-service
+spec:
+  ports:
+  - port: 4000
+    name: user-port
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: user-app
+  type: LoadBalancer
+status:
+  loadBalancer: {}

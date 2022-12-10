@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: task-app
+  name: task-service
+spec:
+  ports:
+  - port: 4001
+    name: task-port
+    protocol: TCP
+    targetPort: 3001
+  selector:
+    app: task-app
+  type: LoadBalancer
+status:
+  loadBalancer: {}

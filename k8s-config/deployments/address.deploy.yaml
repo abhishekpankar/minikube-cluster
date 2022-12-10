@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: address-app
+  name: address-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: address-app
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: address-app
+    spec:
+      containers:
+      - image: address-service:1
+        imagePullPolicy: Never
+        name: address-service
+        ports:
+          - containerPort: 3002
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+status: {}

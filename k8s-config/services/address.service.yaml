@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: address-app
+  name: address-service
+spec:
+  ports:
+  - port: 4002
+    name: address-port
+    protocol: TCP
+    targetPort: 3002
+  selector:
+    app: address-app
+  type: LoadBalancer
+status:
+  loadBalancer: {}

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: user-app
+  name: user-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: user-app
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: user-app
+    spec:
+      containers:
+      - image: user-service:1
+        imagePullPolicy: Never
+        name: user-service
+        ports:
+          - containerPort: 3002
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+status: {}

@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+spec:
+  rules:
+    - host: api.localhost
+      http:
+        paths:
+          - pathType: Prefix
+            path: /address
+            backend:
+              service:
+                name: address-service
+                port:
+                  name: address-port
+          - pathType: Prefix
+            path: /tasks
+            backend:
+              service:
+                name: task-service
+                port:
+                  name: task-port
+          - pathType: Prefix
+            path: /users
+            backend:
+              service:
+                name: user-service
+                port:
+                  name: user-port
+
+  # defaultBackend:
+  #   service:
+  #     name: defaultsvc
+  #     port:
+  #       name: http,tls
+status:
+  loadBalancer: {}
